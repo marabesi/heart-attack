@@ -19,7 +19,7 @@ public class SpawnerManager : MonoBehaviour {
 		if (Time.time > nextSpawn) 
 		{
 			nextSpawn = Time.time + spawnTime;
-			x = Random.Range (362.8f, 428.6f);
+			x = Random.Range (389f, 395f);
 			whereSpawn = new Vector2 (x, transform.position.y);
 			Instantiate (enemy, whereSpawn, Quaternion.identity);
 		}

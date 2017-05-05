@@ -4,13 +4,24 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
+	public Transform Player;
+	public float speed = 2f;
+	private float minDistance = 0.2f;
+	private float range;
+
 	// Use this for initialization
 	void Start () {
 		
 	}
 	
-	// Update is called once per frame
 	void Update () {
-		
+		Player = GameObject.FindWithTag ("Player").transform;
+		range = Vector2.Distance(transform.position, Player.position);
+
+		if (range > minDistance) {
+			Debug.Log (range);
+			Player = GameObject.FindWithTag ("Player").transform;
+			transform.position = Vector2.MoveTowards (transform.position, Player.position, speed * Time.deltaTime);
+		}
 	}
 }
