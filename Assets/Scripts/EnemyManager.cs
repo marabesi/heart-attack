@@ -1,15 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour {
+public class EnemyManager : MonoBehaviour {
 
 	public Transform Player;
 	public float speed = 2f;
+
+	public Slider LifeBar;
+
 	private float minDistance = 0.2f;
 	private float range;
-
-	// Use this for initialization
+	
 	void Start () {
 		
 	}
@@ -19,9 +22,17 @@ public class GameManager : MonoBehaviour {
 		range = Vector2.Distance(transform.position, Player.position);
 
 		if (range > minDistance) {
-			Debug.Log (range);
 			Player = GameObject.FindWithTag ("Player").transform;
 			transform.position = Vector2.MoveTowards (transform.position, Player.position, speed * Time.deltaTime);
+		}
+	}
+
+	void OnCollisionEnter2D(Collision2D col) {
+		if (col.gameObject.tag == "Player") {
+			Slider LifeBar = Player.GetComponent<PlayerManager>().LifeBar;
+			LifeBar.value -= 10;
+			
+			Destroy (GameObject.FindWithTag ("Enemy"));
 		}
 	}
 }
