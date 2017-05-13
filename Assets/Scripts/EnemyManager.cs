@@ -11,11 +11,10 @@ public class EnemyManager : MonoBehaviour {
 	public Slider LifeBar;
 
 	private float minDistance = 0.2f;
+
 	private float range;
 	
-	void Start () {
-		
-	}
+	void Start () { }
 	
 	void Update () {
 		Player = GameObject.FindWithTag ("Player").transform;
@@ -29,8 +28,10 @@ public class EnemyManager : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D col) {
 		if (col.gameObject.tag == "Player") {
-			Slider LifeBar = Player.GetComponent<PlayerManager>().LifeBar;
-			LifeBar.value -= 10;
+			if (Player) {
+				Slider LifeBar = Player.GetComponent<PlayerManager>().LifeBar;
+				LifeBar.value -= 20;
+			}
 			
 			Destroy (GameObject.FindWithTag ("Enemy"));
 		}
