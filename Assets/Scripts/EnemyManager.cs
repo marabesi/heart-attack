@@ -14,7 +14,9 @@ public class EnemyManager : MonoBehaviour {
 
 	private float range;
 	
-	void Start () { }
+	void Start () {
+		Player = GameObject.FindWithTag ("Player").transform;
+	 }
 	
 	void Update () {
 		Player = GameObject.FindWithTag ("Player").transform;
@@ -28,10 +30,14 @@ public class EnemyManager : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D col) {
 		if (col.gameObject.tag == "Player") {
-			if (Player) {
-				Slider LifeBar = Player.GetComponent<PlayerManager>().LifeBar;
-				LifeBar.value -= 20;
-			}
+			Slider LifeBar = Player.GetComponent<PlayerManager>().LifeBar;
+			LifeBar.value -= 20;
+
+			Text score = Player.GetComponent<PlayerManager>().score;
+			
+			int currentScore = Player.GetComponent<PlayerManager>().currentScore ++;
+
+			score.text = currentScore.ToString();
 			
 			Destroy (GameObject.FindWithTag ("Enemy"));
 		}
