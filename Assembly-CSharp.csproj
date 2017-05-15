@@ -52,6 +52,8 @@
      <Compile Include="Assets\Scripts\SliderManager.cs" />
      <Compile Include="Assets\Scripts\SpawnerManager.cs" />
      <Compile Include="Assets\Scripts\SwipeManager.cs" />
+     <Compile Include="Assets\Scripts\Swiper\MouseSwipe.cs" />
+     <Compile Include="Assets\Scripts\Swiper\SmartPhoneSwipe.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
